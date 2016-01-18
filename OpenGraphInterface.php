@@ -98,4 +98,14 @@ interface OpenGraphInterface
      * @return OpenGraphInterface
      */
     public function setVideo($url);
+
+    /**
+     * Add an OpenGraph tag as a collection
+     *
+     * @param string $namespace
+     * @param string $tag
+     * @param string $content
+     * @return OpenGraphInterface
+     */
+    public function add($namespace, $tag, $content);
 }

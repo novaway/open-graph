@@ -31,9 +31,7 @@ class OpenGraph implements OpenGraphInterface
      */
     public function setTitle($title)
     {
-        $this->tags[OpenGraphMetadata::TITLE] = new OpenGraphTag(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::TITLE, $title);
-
-        return $this;
+        return $this->add(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::TITLE, $title);
     }
 
     /**
@@ -41,9 +39,7 @@ class OpenGraph implements OpenGraphInterface
      */
     public function setType($type)
     {
-        $this->tags[OpenGraphMetadata::TYPE] = new OpenGraphMetadata(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::TYPE, $type);
-
-        return $this;
+        return $this->add(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::TYPE, $type);
     }
 
     /**
@@ -51,9 +47,7 @@ class OpenGraph implements OpenGraphInterface
      */
     public function setUrl($url)
     {
-        $this->tags[OpenGraphMetadata::URL] = new OpenGraphMetadata(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::URL, $url);
-
-        return $this;
+        return $this->add(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::URL, $url);
     }
 
     /**
@@ -61,9 +55,7 @@ class OpenGraph implements OpenGraphInterface
      */
     public function setImage($image)
     {
-        $this->tags[OpenGraphMetadata::IMAGE] = new OpenGraphMetadata(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::IMAGE, $image);
-
-        return $this;
+        return $this->add(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::IMAGE, $image);
     }
 
     /**
@@ -71,9 +63,7 @@ class OpenGraph implements OpenGraphInterface
      */
     public function setAudio($url)
     {
-        $this->tags[OpenGraphMetadata::AUDIO] = new OpenGraphMetadata(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::AUDIO, $url);
-
-        return $this;
+        return $this->add(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::AUDIO, $url);
     }
 
     /**
@@ -81,9 +71,7 @@ class OpenGraph implements OpenGraphInterface
      */
     public function setDesription($description)
     {
-        $this->tags[OpenGraphMetadata::DESCRIPTION] = new OpenGraphMetadata(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::DESCRIPTION, $description);
-
-        return $this;
+        return $this->add(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::DESCRIPTION, $description);
     }
 
     /**
@@ -91,9 +79,7 @@ class OpenGraph implements OpenGraphInterface
      */
     public function setDeterminer($determiner)
     {
-        $this->tags[OpenGraphMetadata::DETERMINER] = new OpenGraphMetadata(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::DETERMINER, $determiner);
-
-        return $this;
+        return $this->add(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::DETERMINER, $determiner);
     }
 
     /**
@@ -101,9 +87,7 @@ class OpenGraph implements OpenGraphInterface
      */
     public function setLocale($locale)
     {
-        $this->tags[OpenGraphMetadata::LOCALE] = new OpenGraphMetadata(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::LOCALE, $locale);
-
-        return $this;
+        return $this->add(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::LOCALE, $locale);
     }
 
     /**
@@ -111,9 +95,7 @@ class OpenGraph implements OpenGraphInterface
      */
     public function setLocaleAlternate($locale)
     {
-        $this->tags[OpenGraphMetadata::LOCALE_ALTERNATE] = new OpenGraphMetadata(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::LOCALE_ALTERNATE, $locale);
-
-        return $this;
+        return $this->add(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::LOCALE_ALTERNATE, $locale);
     }
 
     /**
@@ -121,9 +103,7 @@ class OpenGraph implements OpenGraphInterface
      */
     public function setSiteName($sitename)
     {
-        $this->tags[OpenGraphMetadata::SITE_NAME] = new OpenGraphMetadata(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::SITE_NAME, $sitename);
-
-        return $this;
+        return $this->add(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::SITE_NAME, $sitename);
     }
 
     /**
@@ -131,7 +111,15 @@ class OpenGraph implements OpenGraphInterface
      */
     public function setVideo($url)
     {
-        $this->tags[OpenGraphMetadata::VIDEO] = new OpenGraphMetadata(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::VIDEO, $url);
+        return $this->add(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::VIDEO, $url);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function add($namespace, $tag, $content)
+    {
+        $this->tags[] = new OpenGraphTag($namespace, $tag, $content);
 
         return $this;
     }
