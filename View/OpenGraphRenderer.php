@@ -14,6 +14,28 @@ class OpenGraphRenderer implements OpenGraphRendererInterface
     /**
      * {@inheritdoc}
      */
+    public function renderNamespaceAttributes(OpenGraphInterface $graph)
+    {
+        $namespaces = $graph->getNamespaces();
+        if (empty($namespaces)) {
+            return '';
+        }
+
+        $attributes = '';
+        foreach ($graph->getNamespaces() as $prefix => $uri) {
+            if (!empty($attributes)) {
+                $attributes .= ' ';
+            }
+
+            $attributes .= sprintf('%s: %s', $prefix, $uri);
+        }
+
+        return sprintf('prefix="%s"', $attributes);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function render(OpenGraphInterface $graph)
     {
         $html = '';

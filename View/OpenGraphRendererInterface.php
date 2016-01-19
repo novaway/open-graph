@@ -8,6 +8,14 @@ use Novaway\Component\OpenGraph\OpenGraphTagInterface;
 interface OpenGraphRendererInterface
 {
     /**
+     * Render namespace attributes
+     *
+     * @param OpenGraphInterface $graph
+     * @return string
+     */
+    public function renderNamespaceAttributes(OpenGraphInterface $graph);
+
+    /**
      * Render Open Graph
      *
      * @param OpenGraphInterface $graph

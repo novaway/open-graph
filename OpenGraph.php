@@ -6,8 +6,11 @@ use Novaway\Component\OpenGraph\Metadata\OpenGraphMetadata;
 
 class OpenGraph implements OpenGraphInterface
 {
-    /** @var array */
+    /** @var OpenGraphTagInterface[] */
     private $tags;
+
+    /** @var array */
+    private $namespaces;
 
 
     /**
@@ -15,7 +18,8 @@ class OpenGraph implements OpenGraphInterface
      */
     public function __construct()
     {
-        $this->tags = [];
+        $this->tags       = [];
+        $this->namespaces = [];
     }
 
     /**
@@ -24,6 +28,14 @@ class OpenGraph implements OpenGraphInterface
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNamespaces()
+    {
+        return $this->namespaces;
     }
 
     /**
@@ -120,6 +132,16 @@ class OpenGraph implements OpenGraphInterface
     public function add($namespace, $tag, $content)
     {
         $this->tags[] = new OpenGraphTag($namespace, $tag, $content);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addNamespace($prefix, $uri)
+    {
+        $this->namespaces[$prefix] = $uri;
 
         return $this;
     }

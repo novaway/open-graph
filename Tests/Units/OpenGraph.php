@@ -28,4 +28,27 @@ class OpenGraph extends atoum
                     ->hasSize(2)
         ;
     }
+
+    public function testAddNamespace()
+    {
+        $this
+            ->if($this->newTestedInstance())
+            ->then
+                ->array($this->testedInstance->getNamespaces())
+                    ->isEmpty()
+
+            ->given($this->testedInstance->addNamespace('foo', 'uri://bar'))
+            ->then
+                ->array($this->testedInstance->getNamespaces())
+                    ->string['foo']->isEqualTo('uri://bar')
+                    ->hasSize(1)
+
+            ->given($this->testedInstance->addNamespace('john', 'doe'))
+            ->then
+                ->array($this->testedInstance->getNamespaces())
+                    ->string['foo']->isEqualTo('uri://bar')
+                    ->string['john']->isEqualTo('doe')
+                    ->hasSize(2)
+        ;
+    }
 }

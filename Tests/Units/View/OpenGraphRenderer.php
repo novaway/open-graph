@@ -6,6 +6,27 @@ use atoum;
 
 class OpenGraphRenderer extends atoum
 {
+    public function testRenderNamespaceAttributes()
+    {
+        $this
+            ->given($graph = new \mock\Novaway\Component\OpenGraph\OpenGraph())
+            ->if($this->newTestedInstance())
+            ->then
+                ->string($this->testedInstance->renderNamespaceAttributes($graph))
+                    ->isEmpty()
+
+            ->given($graph->addNamespace('foo', 'uri://bar'))
+            ->then
+                ->string($this->testedInstance->renderNamespaceAttributes($graph))
+                    ->isEqualTo('prefix="foo: uri://bar"')
+
+            ->given($graph->addNamespace('john', 'uri://doe'))
+            ->then
+                ->string($this->testedInstance->renderNamespaceAttributes($graph))
+                    ->isEqualTo('prefix="foo: uri://bar john: uri://doe"')
+        ;
+    }
+
     public function testRenderTag()
     {
         $this

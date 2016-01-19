@@ -7,9 +7,16 @@ interface OpenGraphInterface
     /**
      * Get registered tags
      *
-     * @return array
+     * @return OpenGraphTagInterface[]
      */
     public function getTags();
+
+    /**
+     * Get namespace used in registered tags
+     *
+     * @return array
+     */
+    public function getNamespaces();
 
     /**
      * Set the title of your object as it should appear within the graph
@@ -108,4 +115,13 @@ interface OpenGraphInterface
      * @return OpenGraphInterface
      */
     public function add($namespace, $tag, $content);
+
+    /**
+     * Add a namespace to the graph
+     *
+     * @param string $prefix
+     * @param string $uri
+     * @return OpenGraphInterface
+     */
+    public function addNamespace($prefix, $uri);
 }
