@@ -1,6 +1,6 @@
 <?php
 
-namespace Novaway\Component\OpenGraph\Metadata\Types\Profile;
+namespace Novaway\Component\OpenGraph\Model\Types\Profile;
 
 class OpenGraphProfileType
 {

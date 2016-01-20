@@ -1,6 +1,6 @@
 <?php
 
-namespace Novaway\Component\OpenGraph\Metadata\Types\Video;
+namespace Novaway\Component\OpenGraph\Model\Types\Video;
 
 abstract class OpenGraphVideoType
 {

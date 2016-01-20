@@ -1,6 +1,6 @@
 <?php
 
-namespace Novaway\Component\OpenGraph\Metadata\Types\Book;
+namespace Novaway\Component\OpenGraph\Model\Types\Book;
 
 class OpenGraphBookType
 {

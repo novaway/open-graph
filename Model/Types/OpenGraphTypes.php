@@ -1,6 +1,6 @@
 <?php
 
-namespace Novaway\Component\OpenGraph\Metadata\Types;
+namespace Novaway\Component\OpenGraph\Model\Types;
 
 class OpenGraphTypes
 {

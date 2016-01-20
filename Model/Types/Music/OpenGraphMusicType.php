@@ -1,6 +1,6 @@
 <?php
 
-namespace Novaway\Component\OpenGraph\Metadata\Types\Music;
+namespace Novaway\Component\OpenGraph\Model\Types\Music;
 
 abstract class OpenGraphMusicType
 {

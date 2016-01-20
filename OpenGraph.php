@@ -2,7 +2,7 @@
 
 namespace Novaway\Component\OpenGraph;
 
-use Novaway\Component\OpenGraph\Metadata\OpenGraphMetadata;
+use Novaway\Component\OpenGraph\Model\OpenGraphMetadata;
 
 class OpenGraph implements OpenGraphInterface
 {
