@@ -6,5 +6,5 @@ class OpenGraphVideoEpisodeType extends OpenGraphVideoMovieType
 {
     const TYPE = 'video.episode';
 
-    const PROPERTY_SERIES = 'video:series';
+    const PROPERTY_SERIES = 'series';
 }

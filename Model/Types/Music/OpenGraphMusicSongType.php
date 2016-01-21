@@ -6,9 +6,9 @@ class OpenGraphMusicSongType extends OpenGraphMusicType
 {
     const TYPE = 'music.song';
 
-    const PROPERTY_DURATION    = 'music:duration';
-    const PROPERTY_ALBUM       = 'music:album';
-    const PROPERTY_ALBUM_DISC  = 'music:album:disc';
-    const PROPERTY_ALBUM_TRACK = 'music:album:track';
-    const PROPERTY_MUSICIAN    = 'music:musician';
+    const PROPERTY_DURATION    = 'duration';
+    const PROPERTY_ALBUM       = 'album';
+    const PROPERTY_ALBUM_DISC  = 'album:disc';
+    const PROPERTY_ALBUM_TRACK = 'album:track';
+    const PROPERTY_MUSICIAN    = 'musician';
 }

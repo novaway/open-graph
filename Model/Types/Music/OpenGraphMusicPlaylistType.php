@@ -6,8 +6,8 @@ class OpenGraphMusicPlaylistType extends OpenGraphMusicType
 {
     const TYPE = 'music.playlist';
 
-    const PROPERTY_SONG       = 'music:song';
-    const PROPERTY_SONG_DISC  = 'music:song:disc';
-    const PROPERTY_SONG_TRACK = 'music:song:track';
-    const PROPERTY_CREATOR    = 'music:creator';
+    const PROPERTY_SONG       = 'song';
+    const PROPERTY_SONG_DISC  = 'song:disc';
+    const PROPERTY_SONG_TRACK = 'song:track';
+    const PROPERTY_CREATOR    = 'creator';
 }

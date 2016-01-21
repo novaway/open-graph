@@ -6,5 +6,5 @@ class OpenGraphMusicRadioStationType extends OpenGraphMusicType
 {
     const TYPE = 'music.radio_station';
 
-    const PROPERTY_CREATOR = 'music:creator';
+    const PROPERTY_CREATOR = 'creator';
 }

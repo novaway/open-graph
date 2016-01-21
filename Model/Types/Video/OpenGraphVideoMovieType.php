@@ -6,11 +6,11 @@ class OpenGraphVideoMovieType extends OpenGraphVideoType
 {
     const TYPE = 'video.movie';
 
-    const PROPERTY_ACTOR         = 'video:actor';
-    const PROPERTY_ACTOR_ROLE    = 'video:actor:role';
-    const PROPERTY_DIRECTOR      = 'video:director';
-    const PROPERTY_WRITER        = 'video:writer';
-    const PROPERTY_DURATION      = 'video:duration';
-    const PROPERTY_REALEASE_DATE = 'video:release_date';
-    const PROPERTY_TAG           = 'video:tag';
+    const PROPERTY_ACTOR         = 'actor';
+    const PROPERTY_ACTOR_ROLE    = 'actor:role';
+    const PROPERTY_DIRECTOR      = 'director';
+    const PROPERTY_WRITER        = 'writer';
+    const PROPERTY_DURATION      = 'duration';
+    const PROPERTY_REALEASE_DATE = 'release_date';
+    const PROPERTY_TAG           = 'tag';
 }

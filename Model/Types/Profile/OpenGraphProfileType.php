@@ -4,13 +4,13 @@ namespace Novaway\Component\OpenGraph\Model\Types\Profile;
 
 class OpenGraphProfileType
 {
-    const NAMESPACE_TAG = 'ogprofile';
+    const NAMESPACE_TAG = 'profile';
     const NAMESPACE_URL = 'http://ogp.me/ns/profile#';
 
     const TYPE = 'profile';
 
-    const PROPERTY_FIRSTNAME = 'profile:first_name';
-    const PROPERTY_LASTNAME  = 'profile:last_name';
-    const PROPERTY_USERNAME  = 'profile:username';
-    const PROPERTY_GENDER    = 'profile:gender';
+    const PROPERTY_FIRSTNAME = 'first_name';
+    const PROPERTY_LASTNAME  = 'last_name';
+    const PROPERTY_USERNAME  = 'username';
+    const PROPERTY_GENDER    = 'gender';
 }
