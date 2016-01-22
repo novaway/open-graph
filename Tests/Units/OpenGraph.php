@@ -3,6 +3,7 @@
 namespace Novaway\Component\OpenGraph\Tests\Units;
 
 use atoum;
+use Novaway\Component\OpenGraph\OpenGraphTag;
 
 class OpenGraph extends atoum
 {
@@ -17,14 +18,20 @@ class OpenGraph extends atoum
             ->given($this->testedInstance->add('foo', 'bar', 'content'))
             ->then
                 ->array($this->testedInstance->getTags())
-                    ->object[0]->isInstanceOf('Novaway\Component\OpenGraph\OpenGraphTagInterface')
+                    ->object[0]
+                        ->isInstanceOf('Novaway\Component\OpenGraph\OpenGraphTagInterface')
+                        ->isEqualTo(new OpenGraphTag('foo', 'bar', 'content'))
                     ->hasSize(1)
 
             ->given($this->testedInstance->add('foo', 'bar', 'content'))
             ->then
                 ->array($this->testedInstance->getTags())
-                    ->object[0]->isInstanceOf('Novaway\Component\OpenGraph\OpenGraphTagInterface')
-                    ->object[1]->isInstanceOf('Novaway\Component\OpenGraph\OpenGraphTagInterface')
+                    ->object[0]
+                        ->isInstanceOf('Novaway\Component\OpenGraph\OpenGraphTagInterface')
+                        ->isEqualTo(new OpenGraphTag('foo', 'bar', 'content'))
+                    ->object[1]
+                        ->isInstanceOf('Novaway\Component\OpenGraph\OpenGraphTagInterface')
+                        ->isEqualTo(new OpenGraphTag('foo', 'bar', 'content'))
                     ->hasSize(2)
         ;
     }
