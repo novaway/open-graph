@@ -12,6 +12,16 @@ class OpenGraphRenderer implements OpenGraphRendererInterface
 
 
     /**
+     * Create renderer instance
+     *
+     * @return static
+     */
+    public static function create()
+    {
+        return new static();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function renderNamespaceAttributes(OpenGraphInterface $graph)
