@@ -3,6 +3,7 @@
 namespace Novaway\Component\OpenGraph\View;
 
 use Novaway\Component\OpenGraph\OpenGraphInterface;
+use Novaway\Component\OpenGraph\OpenGraphTag;
 use Novaway\Component\OpenGraph\OpenGraphTagInterface;
 
 class OpenGraphRenderer implements OpenGraphRendererInterface
@@ -62,6 +63,15 @@ class OpenGraphRenderer implements OpenGraphRendererInterface
      */
     public function renderTag(OpenGraphTagInterface $tag)
     {
+        if (is_array($tag->getContent())) {
+            $html = '';
+            foreach ($tag->getContent() as $content) {
+                $html .= $this->renderTag(new OpenGraphTag($tag->getPrefix(), $tag->getProperty(), $content));
+            }
+
+            return $html;
+        }
+
         return str_replace(
             ['#property#', '#content#'],
             [sprintf('%s:%s', $tag->getPrefix(), $tag->getProperty()), $tag->getContent()],
