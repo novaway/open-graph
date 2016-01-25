@@ -1,0 +1,28 @@
+{
+    "name": "novaway/open-graph",
+    "description": "Provide a simple integration of the OpenGraph protocol",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jérémy DECOOL",
+            "email": "jeremy@novaway.fr"
+        }
+    ],
+    "require": {
+        "doctrine/annotations": "^1.2",
+        "jms/metadata": "^1.5"
+    },
+    "require-dev": {
+        "atoum/atoum": "^2.5",
+        "atoum/stubs": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Novaway\\Component\\OpenGraph\\": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin/"
+    }
+}
