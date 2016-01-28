@@ -1,6 +1,6 @@
 <?php
 
-namespace Novaway\Component\OpenGraph\Tests\Units;
+namespace Novaway\Component\OpenGraph\tests\units;
 
 use atoum;
 use Novaway\Component\OpenGraph\OpenGraphTag;

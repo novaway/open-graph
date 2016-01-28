@@ -22,6 +22,11 @@
             "Novaway\\Component\\OpenGraph\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "": "tests/fixtures"
+        }
+    },
     "config": {
         "bin-dir": "bin/"
     }

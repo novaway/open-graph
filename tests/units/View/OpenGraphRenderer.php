@@ -1,6 +1,6 @@
 <?php
 
-namespace Novaway\Component\OpenGraph\Tests\Units\View;
+namespace Novaway\Component\OpenGraph\tests\units\View;
 
 use atoum;
 
