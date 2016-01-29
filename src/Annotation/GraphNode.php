@@ -10,16 +10,24 @@ abstract class GraphNode
     /** @var string */
     public $tag;
 
+    /** @var string */
+    public $value;
+
 
     /**
      * Constructor
      *
      * @param string $namespace
      * @param string $tag
+     * @param array  $values
      */
-    public function __construct($namespace, $tag)
+    public function __construct($namespace, $tag, array $values = [])
     {
         $this->namespace = $namespace;
         $this->tag       = $tag;
+
+        if (isset($values['value'])) {
+            $this->value = $values['value'];
+        }
     }
 }

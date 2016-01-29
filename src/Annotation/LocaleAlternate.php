@@ -10,19 +10,8 @@ use Novaway\Component\OpenGraph\Model\OpenGraphMetadata;
  */
 class LocaleAlternate extends GraphNode
 {
-    public $value;
-
-
     public function __construct(array $values)
     {
-        parent::__construct(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::LOCALE_ALTERNATE);
-
-        if (!empty($values['value'])) {
-            if (!is_array($values['value'])) {
-                $values['value'] = [$values['value']];
-            }
-
-            $this->value = $values['value'];
-        }
+        parent::__construct(OpenGraphMetadata::NAMESPACE_TAG, OpenGraphMetadata::LOCALE_ALTERNATE, $values);
     }
 }

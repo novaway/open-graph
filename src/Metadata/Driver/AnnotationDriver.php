@@ -5,10 +5,6 @@ namespace Novaway\Component\OpenGraph\Metadata\Driver;
 use Doctrine\Common\Annotations\Reader;
 use Metadata\Driver\DriverInterface;
 use Novaway\Component\OpenGraph\Annotation\GraphNode;
-use Novaway\Component\OpenGraph\Annotation\Locale;
-use Novaway\Component\OpenGraph\Annotation\LocaleAlternate;
-use Novaway\Component\OpenGraph\Annotation\SiteName;
-use Novaway\Component\OpenGraph\Annotation\Type;
 use Novaway\Component\OpenGraph\Metadata\ClassMetadata;
 use Novaway\Component\OpenGraph\Metadata\MetadataValue;
 use Novaway\Component\OpenGraph\Metadata\MethodMetadata;
@@ -42,12 +38,7 @@ class AnnotationDriver implements DriverInterface
         $classMetadata->fileResources[] = $class->getFileName();
 
         foreach ($this->reader->getClassAnnotations($class) as $annotation) {
-            if (
-                $annotation instanceof Locale
-                || $annotation instanceof LocaleAlternate
-                || $annotation instanceof SiteName
-                || $annotation instanceof Type
-            ) {
+            if ($annotation instanceof GraphNode) {
                 $classMetadata->addGraphMetadata($annotation, new MetadataValue($annotation->value));
             }
         }
