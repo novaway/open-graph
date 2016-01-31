@@ -2,6 +2,8 @@
     "name": "novaway/open-graph",
     "description": "Provide a simple integration of the OpenGraph protocol",
     "type": "library",
+    "keywords": ["open graph", "facebook"],
+    "homepage": "http://github.com/novaway/open-graph",
     "license": "MIT",
     "authors": [
         {
