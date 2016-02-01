@@ -4,6 +4,7 @@ namespace Novaway\Component\OpenGraph\Tests\Units\Metadata\Driver;
 
 use atoum;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Novaway\Component\OpenGraph\Annotation\Node;
 use Novaway\Component\OpenGraph\Annotation\Title;
 use Novaway\Component\OpenGraph\Annotation\Type;
 use Novaway\Component\OpenGraph\Annotation\Url;
@@ -26,7 +27,23 @@ class AnnotationDriver extends atoum
                     ->contains(['node' => new Type(['value' => 'object']), 'object' => new MetadataValue('object')])
                     ->contains(['node' => new Title(), 'object' => new PropertyMetadata('BlogPost', 'title')])
                     ->contains(['node' => new Url(), 'object' => new MethodMetadata('BlogPost', 'getUrl')])
-                    ->hasSize(3)
+                    ->contains(['node' => $this->createCustomNode('custom', 'tag', 'tagValue'), 'object' => new MetadataValue('tagValue')])
+                    ->contains(['node' => $this->createCustomNode('og', 'site_name'), 'object' => new MethodMetadata('BlogPost', 'getCustomTag')])
+                    ->hasSize(5)
         ;
+    }
+
+    private function createCustomNode($namespace, $tag, $value = null)
+    {
+        $params = ['namespace' => $namespace, 'tag' => $tag];
+        if (null !== $value) {
+            $params['value'] = $value;
+        }
+
+        $node = new Node($params);
+        $node->namespace = $namespace;
+        $node->tag       = $tag;
+
+        return $node;
     }
 }

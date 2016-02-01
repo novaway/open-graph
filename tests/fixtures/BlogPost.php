@@ -2,12 +2,16 @@
 
 use Novaway\Component\OpenGraph\Annotation as OpenGraph;
 
-/** @OpenGraph\Type("object") */
+/**
+ * @OpenGraph\Type("object")
+ * @OpenGraph\Node(namespace="custom", tag="tag", value="tagValue")
+ */
 class BlogPost
 {
     /** @OpenGraph\Title() */
     protected $title;
 
+    /** @var int  */
     public $field = 5;
 
 
@@ -27,5 +31,13 @@ class BlogPost
     public function getLength()
     {
         return 25;
+    }
+
+    /**
+     * @OpenGraph\Node(namespace="og", tag="site_name")
+     */
+    public function getCustomTag()
+    {
+        return 'http://uri.com';
     }
 }
