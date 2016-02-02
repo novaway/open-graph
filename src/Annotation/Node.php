@@ -26,11 +26,6 @@ class Node extends GraphNode
 
     public function __construct(array $values = [])
     {
-        $this->namespace = $values['namespace'];
-        $this->tag = $values['tag'];
-
-        if (isset($values['value'])) {
-            $this->value = $values['value'];
-        }
+        parent::__construct($values['namespace'], $values['tag'], $values);
     }
 }

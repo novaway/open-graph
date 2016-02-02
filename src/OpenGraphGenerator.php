@@ -42,6 +42,10 @@ class OpenGraphGenerator
         }
 
         foreach ($metadata->nodes as $graphNode) {
+            if (!empty($graphNode['node']->namespaceUri)) {
+                $openGraph->addNamespace($graphNode['node']->namespace, $graphNode['node']->namespaceUri);
+            }
+
             $openGraph->add($graphNode['node']->namespace, $graphNode['node']->tag, $graphNode['object']->getValue($obj));
         }
 
