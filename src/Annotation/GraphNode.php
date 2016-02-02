@@ -8,6 +8,9 @@ abstract class GraphNode
     public $namespace;
 
     /** @var string */
+    public $namespaceUri;
+
+    /** @var string */
     public $tag;
 
     /** @var string */
@@ -25,6 +28,10 @@ abstract class GraphNode
     {
         $this->namespace = $namespace;
         $this->tag       = $tag;
+
+        if (isset($values['namespaceUri'])) {
+            $this->namespaceUri = $values['namespaceUri'];
+        }
 
         if (isset($values['value'])) {
             $this->value = $values['value'];

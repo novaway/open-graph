@@ -4,9 +4,13 @@ namespace Novaway\Component\OpenGraph\Metadata;
 
 use Metadata\MergeableClassMetadata;
 use Novaway\Component\OpenGraph\Annotation\GraphNode;
+use Novaway\Component\OpenGraph\Annotation\NamespaceNode;
 
 class ClassMetadata extends MergeableClassMetadata
 {
+    /** @var NamespaceNode[] */
+    public $namespaces;
+
     /** @var GraphMetadataInterface[] */
     public $nodes;
 
@@ -20,7 +24,21 @@ class ClassMetadata extends MergeableClassMetadata
     {
         parent::__construct($name);
 
-        $this->nodes = [];
+        $this->namespaces = [];
+        $this->nodes      = [];
+    }
+
+    /**
+     * Add OpenGraph namespace
+     *
+     * @param NamespaceNode $namespace
+     * @return ClassMetadata
+     */
+    public function addGraphNamespace(NamespaceNode $namespace)
+    {
+        $this->namespaces[] = $namespace;
+
+        return $this;
     }
 
     /**
