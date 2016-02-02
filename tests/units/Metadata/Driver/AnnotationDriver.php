@@ -4,6 +4,7 @@ namespace Novaway\Component\OpenGraph\Tests\Units\Metadata\Driver;
 
 use atoum;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Novaway\Component\OpenGraph\Annotation\NamespaceNode;
 use Novaway\Component\OpenGraph\Annotation\Node;
 use Novaway\Component\OpenGraph\Annotation\Title;
 use Novaway\Component\OpenGraph\Annotation\Type;
@@ -23,6 +24,10 @@ class AnnotationDriver extends atoum
                 ->given($metadata = $this->testedInstance->loadMetadataForClass($class))
                 ->object($metadata)
                     ->isInstanceOf('Novaway\Component\OpenGraph\Metadata\ClassMetadata')
+                ->array($metadata->namespaces)
+                    ->contains(new NamespaceNode(['prefix' => 'custom', 'uri' => 'http://path']))
+                    ->contains(new NamespaceNode(['prefix' => 'foo', 'uri' => 'bar']))
+                    ->hasSize(2)
                 ->array($metadata->nodes)
                     ->contains(['node' => new Type(['value' => 'object']), 'object' => new MetadataValue('object')])
                     ->contains(['node' => new Title(), 'object' => new PropertyMetadata('BlogPost', 'title')])

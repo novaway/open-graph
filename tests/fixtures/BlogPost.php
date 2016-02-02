@@ -5,6 +5,8 @@ use Novaway\Component\OpenGraph\Annotation as OpenGraph;
 /**
  * @OpenGraph\Type("object")
  * @OpenGraph\Node(namespace="custom", tag="tag", value="tagValue")
+ * @OpenGraph\NamespaceNode(prefix="custom", uri="http://path")
+ * @OpenGraph\NamespaceNode(prefix="foo", uri="bar")
  */
 class BlogPost
 {
