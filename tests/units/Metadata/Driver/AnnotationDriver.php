@@ -7,6 +7,12 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Novaway\Component\OpenGraph\Annotation\NamespaceNode;
 use Novaway\Component\OpenGraph\Annotation\Node;
 use Novaway\Component\OpenGraph\Annotation\Title;
+use Novaway\Component\OpenGraph\Annotation\TwitterCards\AppCountry;
+use Novaway\Component\OpenGraph\Annotation\TwitterCards\AppGooglePlayName;
+use Novaway\Component\OpenGraph\Annotation\TwitterCards\AppIpadName;
+use Novaway\Component\OpenGraph\Annotation\TwitterCards\AppIphoneName;
+use Novaway\Component\OpenGraph\Annotation\TwitterCards\Card;
+use Novaway\Component\OpenGraph\Annotation\TwitterCards\Creator;
 use Novaway\Component\OpenGraph\Annotation\Type;
 use Novaway\Component\OpenGraph\Annotation\Url;
 use Novaway\Component\OpenGraph\Metadata\MetadataValue;
@@ -54,6 +60,29 @@ class AnnotationDriver extends atoum
                     ->contains(['node' => new Type(['value' => 'object']), 'object' => new MetadataValue('object')])
                     ->contains(['node' => $this->createCustomNode('custom', 'tag', ['value' => 'tagValue', 'namespaceUri' => 'http://path']), 'object' => new MetadataValue('tagValue')])
                     ->hasSize(2)
+        ;
+    }
+
+    public function testLoadMetadataForApplicationClass()
+    {
+        $this
+            ->given($class = new \ReflectionClass('Software\Application'))
+            ->if($this->newTestedInstance(new AnnotationReader()))
+            ->then
+                ->given($metadata = $this->testedInstance->loadMetadataForClass($class))
+                ->object($metadata)
+                    ->isInstanceOf('Novaway\Component\OpenGraph\Metadata\ClassMetadata')
+                ->array($metadata->namespaces)
+                    ->isEmpty()
+                ->array($metadata->nodes)
+                    ->contains(['node' => new Card(['value' => 'app']), 'object' => new MetadataValue('app')])
+                    ->contains(['node' => new AppCountry(['value' => 'FR_fr']), 'object' => new MetadataValue('FR_fr')])
+                    ->contains(['node' => new AppIpadName(), 'object' => new PropertyMetadata('Software\Application', 'name')])
+                    ->contains(['node' => new AppIphoneName(), 'object' => new PropertyMetadata('Software\Application', 'name')])
+                    ->contains(['node' => new AppGooglePlayName(), 'object' => new PropertyMetadata('Software\Application', 'name')])
+                    ->contains(['node' => new \Novaway\Component\OpenGraph\Annotation\TwitterCards\Url(), 'object' => new PropertyMetadata('Software\Application', 'url')])
+                    ->contains(['node' => new Creator(), 'object' => new MethodMetadata('Software\Application', 'getCreator')])
+                    ->hasSize(7)
         ;
     }
 
