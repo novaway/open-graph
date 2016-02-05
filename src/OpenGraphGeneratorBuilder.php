@@ -145,6 +145,87 @@ class OpenGraphGeneratorBuilder
     }
 
     /**
+     * Sets a map of namespace prefixes to directories.
+     *
+     * @param array $namespacePrefixToDirMap
+     * @return OpenGraphGeneratorBuilder
+     * @throws \InvalidArgumentException
+     */
+    public function setMetadataDirs(array $namespacePrefixToDirMap)
+    {
+        foreach ($namespacePrefixToDirMap as $dir) {
+            if (!is_dir($dir)) {
+                throw new \InvalidArgumentException(sprintf('The directory "%s" does not exist.', $dir));
+            }
+        }
+
+        $this->metadataDirectories = $namespacePrefixToDirMap;
+
+        return $this;
+    }
+
+    /**
+     * Adds a directory where the generator will look for class metadata.
+     *
+     * @param string $dir
+     * @param string $namespacePrefix
+     * @return OpenGraphGeneratorBuilder
+     * @throws \InvalidArgumentException
+     */
+    public function addMetadataDir($dir, $namespacePrefix = '')
+    {
+        if (!is_dir($dir)) {
+            throw new \InvalidArgumentException(sprintf('The directory "%s" does not exist.', $dir));
+        }
+
+        if (isset($this->metadataDirectories[$namespacePrefix])) {
+            throw new \InvalidArgumentException(sprintf('There is already a directory configured for the namespace prefix "%s". Please use replaceMetadataDir() to override directories.', $namespacePrefix));
+        }
+
+        $this->metadataDirectories[$namespacePrefix] = $dir;
+
+        return $this;
+    }
+
+    /**
+     * Adds a map of namespace prefixes to directories.
+     *
+     * @param array $namespacePrefixToDirMap
+     * @return OpenGraphGeneratorBuilder
+     */
+    public function addMetadataDirs(array $namespacePrefixToDirMap)
+    {
+        foreach ($namespacePrefixToDirMap as $prefix => $dir) {
+            $this->addMetadataDir($dir, $prefix);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Similar to addMetadataDir(), but overrides an existing entry.
+     *
+     * @param string $dir
+     * @param string $namespacePrefix
+     * @return OpenGraphGeneratorBuilder
+     * @throws \InvalidArgumentException
+     */
+    public function replaceMetadataDir($dir, $namespacePrefix = '')
+    {
+        if (!is_dir($dir)) {
+            throw new \InvalidArgumentException(sprintf('The directory "%s" does not exist.', $dir));
+        }
+
+        if (!isset($this->metadataDirectories[$namespacePrefix])) {
+            throw new \InvalidArgumentException(sprintf('There is no directory configured for namespace prefix "%s". Please use addMetadataDir() for adding new directories.', $namespacePrefix));
+        }
+
+        $this->metadataDirectories[$namespacePrefix] = $dir;
+
+        return $this;
+    }
+
+    /**
      * Create directory
      *
      * @param string $directory
