@@ -3,7 +3,7 @@
 The component allows developer to generate automatically an OpenGraph through
 various annoations which can be used in PHP classes.
 
-> All annotations are located in `Annotaton` directory
+> All annotations are located in `Annotation` directory
 
 ```php
 use Novaway\Component\OpenGraph\Annotation as OpenGraph;
