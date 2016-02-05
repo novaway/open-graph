@@ -1,0 +1,5 @@
+Software\Application:
+    nodes:
+        getCreator:
+            - namespace: 'twitter'
+              tag:       'app:creator'

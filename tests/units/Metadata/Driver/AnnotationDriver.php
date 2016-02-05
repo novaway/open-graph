@@ -2,10 +2,8 @@
 
 namespace Novaway\Component\OpenGraph\Tests\Units\Metadata\Driver;
 
-use atoum;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Novaway\Component\OpenGraph\Annotation\NamespaceNode;
-use Novaway\Component\OpenGraph\Annotation\Node;
 use Novaway\Component\OpenGraph\Annotation\Title;
 use Novaway\Component\OpenGraph\Annotation\TwitterCards\AppCountry;
 use Novaway\Component\OpenGraph\Annotation\TwitterCards\AppGooglePlayName;
@@ -19,7 +17,7 @@ use Novaway\Component\OpenGraph\Metadata\MetadataValue;
 use Novaway\Component\OpenGraph\Metadata\MethodMetadata;
 use Novaway\Component\OpenGraph\Metadata\PropertyMetadata;
 
-class AnnotationDriver extends atoum
+class AnnotationDriver extends AbstractDriver
 {
     public function testLoadMetadataForClass()
     {
@@ -84,16 +82,5 @@ class AnnotationDriver extends atoum
                     ->contains(['node' => new Creator(), 'object' => new MethodMetadata('Software\Application', 'getCreator')])
                     ->hasSize(7)
         ;
-    }
-
-    private function createCustomNode($namespace, $tag, array $params = [])
-    {
-        $params = array_merge(['namespace' => $namespace, 'tag' => $tag], $params);
-
-        $node = new Node($params);
-        $node->namespace = $namespace;
-        $node->tag       = $tag;
-
-        return $node;
     }
 }

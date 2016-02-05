@@ -13,7 +13,8 @@
     ],
     "require": {
         "doctrine/annotations": "^1.2",
-        "jms/metadata": "^1.5"
+        "jms/metadata": "^1.5",
+        "symfony/yaml": "^3.0"
     },
     "require-dev": {
         "atoum/atoum": "^2.5",
@@ -26,7 +27,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "": "tests/fixtures"
+            "": "tests/fixtures",
+            "Novaway\\Component\\OpenGraph\\Tests\\Units\\": "tests/units"
         }
     },
     "config": {

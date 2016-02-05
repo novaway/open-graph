@@ -6,6 +6,7 @@ use Doctrine\Common\Annotations\Reader;
 use Metadata\Driver\DriverChain;
 use Metadata\Driver\FileLocator;
 use Novaway\Component\OpenGraph\Metadata\Driver\AnnotationDriver;
+use Novaway\Component\OpenGraph\Metadata\Driver\YamlDriver;
 
 class DefaultDriverFactory
 {
@@ -22,6 +23,7 @@ class DefaultDriverFactory
             $fileLocator = new FileLocator($metadataDirectories);
 
             return new DriverChain([
+                new YamlDriver($fileLocator),
                 new AnnotationDriver($annotationReader),
             ]);
         }

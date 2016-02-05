@@ -1,0 +1,15 @@
+BlogPost:
+    namespaces:
+        og:  'http://ogp.me/ns#'
+        foo: 'bar'
+
+    nodes:
+        title:
+            - namespace: 'og'
+              tag:       'title'
+            - namespace: 'foo'
+              tag:       'node'
+
+        getUrl:
+            - namespace: 'foo'
+              tag:       'bar'
