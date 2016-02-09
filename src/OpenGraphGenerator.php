@@ -37,16 +37,21 @@ class OpenGraphGenerator
         $classType = get_class($obj);
 
         $metadata = $this->factory->getMetadataForClass($classType);
-        foreach ($metadata->namespaces as $namespace) {
-            $openGraph->addNamespace($namespace->prefix, $namespace->uri);
+
+        if (is_array($metadata->namespaces)) {
+            foreach ($metadata->namespaces as $namespace) {
+                $openGraph->addNamespace($namespace->prefix, $namespace->uri);
+            }
         }
 
-        foreach ($metadata->nodes as $graphNode) {
-            if (!empty($graphNode['node']->namespaceUri)) {
-                $openGraph->addNamespace($graphNode['node']->namespace, $graphNode['node']->namespaceUri);
-            }
+        if (is_array($metadata->nodes)) {
+            foreach ($metadata->nodes as $graphNode) {
+                if (!empty($graphNode['node']->namespaceUri)) {
+                    $openGraph->addNamespace($graphNode['node']->namespace, $graphNode['node']->namespaceUri);
+                }
 
-            $openGraph->add($graphNode['node']->namespace, $graphNode['node']->tag, $graphNode['object']->getValue($obj));
+                $openGraph->add($graphNode['node']->namespace, $graphNode['node']->tag, $graphNode['object']->getValue($obj));
+            }
         }
 
         return $openGraph;
