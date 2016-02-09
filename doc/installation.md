@@ -1,6 +1,6 @@
 ## Installation
 
-### Install OpenGraph throug composer
+### Install OpenGraph through composer
 
 Simply run assuming you have installed composer :
 
