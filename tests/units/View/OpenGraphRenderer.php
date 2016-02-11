@@ -27,6 +27,27 @@ class OpenGraphRenderer extends atoum
         ;
     }
 
+    public function testRenderNamespaceAttributesWithoutTag()
+    {
+        $this
+            ->given($graph = new \mock\Novaway\Component\OpenGraph\OpenGraph())
+            ->if($this->newTestedInstance())
+            ->then
+                ->string($this->testedInstance->renderNamespaceAttributes($graph, false))
+                    ->isEmpty()
+
+            ->given($graph->addNamespace('foo', 'uri://bar'))
+            ->then
+                ->string($this->testedInstance->renderNamespaceAttributes($graph, false))
+                    ->isEqualTo('foo: uri://bar')
+
+            ->given($graph->addNamespace('john', 'uri://doe'))
+            ->then
+                ->string($this->testedInstance->renderNamespaceAttributes($graph, false))
+                    ->isEqualTo('foo: uri://bar john: uri://doe')
+        ;
+    }
+
     public function testRenderTag()
     {
         $this
@@ -35,12 +56,6 @@ class OpenGraphRenderer extends atoum
             ->then
                 ->string($this->testedInstance->renderTag($tag))
                     ->isEqualTo('<meta property="foo:bar" content="content" />')
-
-            ->given($tag = new \mock\Novaway\Component\OpenGraph\OpenGraphTag('foo', 'bar', ['content1', 'content2']))
-            ->if($this->newTestedInstance())
-            ->then
-                ->string($this->testedInstance->renderTag($tag))
-                    ->isEqualTo('<meta property="foo:bar" content="content1" /><meta property="foo:bar" content="content2" />')
         ;
     }
 
@@ -58,6 +73,8 @@ class OpenGraphRenderer extends atoum
             ->then
                 ->string($this->testedInstance->render($graph))
                     ->isEqualTo('<meta property="og:title" content="Foo" /><meta property="og:type" content="object" /><meta property="og:url" content="http://url.com" /><meta property="og:locale:alternate" content="FR_fr" /><meta property="og:locale:alternate" content="FR_ca" />')
+                ->string($this->testedInstance->render($graph, '<br>'))
+                    ->isEqualTo('<meta property="og:title" content="Foo" /><br><meta property="og:type" content="object" /><br><meta property="og:url" content="http://url.com" /><br><meta property="og:locale:alternate" content="FR_fr" /><br><meta property="og:locale:alternate" content="FR_ca" />')
         ;
     }
 }

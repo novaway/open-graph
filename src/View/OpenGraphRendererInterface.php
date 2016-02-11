@@ -11,17 +11,19 @@ interface OpenGraphRendererInterface
      * Render namespace attributes
      *
      * @param OpenGraphInterface $graph
+     * @param bool               $withTag
      * @return string
      */
-    public function renderNamespaceAttributes(OpenGraphInterface $graph);
+    public function renderNamespaceAttributes(OpenGraphInterface $graph, $withTag);
 
     /**
      * Render Open Graph
      *
      * @param OpenGraphInterface $graph
+     * @param bool               $tagSeparator
      * @return string
      */
-    public function render(OpenGraphInterface $graph);
+    public function render(OpenGraphInterface $graph, $tagSeparator);
 
     /**
      * Render Open Graph tag

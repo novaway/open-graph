@@ -131,6 +131,14 @@ class OpenGraph implements OpenGraphInterface
      */
     public function add($namespace, $tag, $content)
     {
+        if (is_array($content)) {
+            foreach ($content as $data) {
+                $this->add($namespace, $tag, $data);
+            }
+
+            return $this;
+        }
+
         $this->tags[] = new OpenGraphTag($namespace, $tag, $content);
 
         return $this;

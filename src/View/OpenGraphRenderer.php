@@ -25,7 +25,7 @@ class OpenGraphRenderer implements OpenGraphRendererInterface
     /**
      * {@inheritdoc}
      */
-    public function renderNamespaceAttributes(OpenGraphInterface $graph)
+    public function renderNamespaceAttributes(OpenGraphInterface $graph, $withTag = true)
     {
         $namespaces = $graph->getNamespaces();
         if (empty($namespaces)) {
@@ -33,7 +33,7 @@ class OpenGraphRenderer implements OpenGraphRendererInterface
         }
 
         $attributes = '';
-        foreach ($graph->getNamespaces() as $prefix => $uri) {
+        foreach ($namespaces as $prefix => $uri) {
             if (!empty($attributes)) {
                 $attributes .= ' ';
             }
@@ -41,17 +41,25 @@ class OpenGraphRenderer implements OpenGraphRendererInterface
             $attributes .= sprintf('%s: %s', $prefix, $uri);
         }
 
-        return sprintf('prefix="%s"', $attributes);
+        if ($withTag) {
+            $attributes = sprintf('prefix="%s"', $attributes);
+        }
+
+        return $attributes;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function render(OpenGraphInterface $graph)
+    public function render(OpenGraphInterface $graph, $tagSeparator = '')
     {
         $html = '';
 
         foreach ($graph->getTags() as $tag) {
+            if (!empty($html)) {
+                $html .= $tagSeparator;
+            }
+
             $html .= $this->renderTag($tag);
         }
 
@@ -63,15 +71,6 @@ class OpenGraphRenderer implements OpenGraphRendererInterface
      */
     public function renderTag(OpenGraphTagInterface $tag)
     {
-        if (is_array($tag->getContent())) {
-            $html = '';
-            foreach ($tag->getContent() as $content) {
-                $html .= $this->renderTag(new OpenGraphTag($tag->getPrefix(), $tag->getProperty(), $content));
-            }
-
-            return $html;
-        }
-
         return str_replace(
             ['#property#', '#content#'],
             [sprintf('%s:%s', $tag->getPrefix(), $tag->getProperty()), $tag->getContent()],
