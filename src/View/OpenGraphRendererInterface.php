@@ -20,7 +20,7 @@ interface OpenGraphRendererInterface
      * Render Open Graph
      *
      * @param OpenGraphInterface $graph
-     * @param bool               $tagSeparator
+     * @param string             $tagSeparator
      * @return string
      */
     public function render(OpenGraphInterface $graph, $tagSeparator);
